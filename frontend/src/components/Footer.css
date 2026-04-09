@@ -1,0 +1,112 @@
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--card-border);
+  color: var(--text-muted);
+  padding: 80px 60px 0;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.footer-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  max-width: 260px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-socials span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.footer-socials span:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  box-shadow: 0 0 15px var(--orange-glow);
+  transform: translateY(-3px);
+}
+
+.footer-col h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 2.4;
+  transition: var(--transition);
+}
+
+.footer-col a:hover {
+  color: var(--orange);
+  transform: translateX(4px);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-apps {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-apps span {
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--card-border);
+  transition: var(--transition);
+}
+
+.footer-apps span:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

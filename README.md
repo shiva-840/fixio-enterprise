@@ -26,8 +26,12 @@ To spin up the ecosystem locally, clone the repository and run the automated exe
 # Clone the repository
 git clone https://github.com/your-username/fixio.git
 cd fixio
+<img width="1919" height="924" alt="Screenshot 2026-04-09 214321" src="https://github.com/user-attachments/assets/19aeafeb-b60a-4512-a3a0-444e2c9efaeb" />
 
 # Automatically spin up both the FastAPI backend and React frontend
-./start.bat
+./start.bat<
+
 ```
 *(Ensure you have successfully built your `venv` requirements and installed your `npm` dependencies beforehand).*
+<img width="1919" height="924" alt="Screenshot 2026-04-09 214321" src="https://github.com/user-attachments/assets/19aeafeb-b60a-4512-a3a0-444e2c9efaeb" />
+<img width="1890" height="818" alt="Screenshot 2026-04-09 214332" src="https://github.com/user-attachments/assets/60325da4-e8a0-45e9-96b4-507fad04d8ff" />

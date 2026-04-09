@@ -9,6 +9,7 @@ import bcrypt
 import jwt
 import datetime
 import time
+import os
 
 SECRET_KEY = "super_secret_fixio_key_123"
 ALGORITHM = "HS256"
@@ -381,3 +382,9 @@ async def websocket_endpoint(websocket: WebSocket, user_email: str):
             # We don't really expect clients to send, just listen.
     except WebSocketDisconnect:
         manager.disconnect(user_email)
+
+# ─── MONOLITHIC REACT MOUNT ─────────────────────────────────
+
+frontend_path = os.path.join(os.path.dirname(__file__), 'frontend', 'build')
+if os.path.isdir(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="static")

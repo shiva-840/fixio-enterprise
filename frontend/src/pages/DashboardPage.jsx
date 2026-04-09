@@ -19,7 +19,10 @@ const carIcon = new L.Icon({
   iconAnchor: [20, 20]
 });
 
-const WS_URL = "ws://127.0.0.1:8000/ws";
+const WEBSOCKET_PROTOCOL = window.location.protocol === "https:" ? "wss:" : "ws:";
+const WS_URL = window.location.hostname === "localhost" 
+  ? "ws://127.0.0.1:8000/ws" 
+  : `${WEBSOCKET_PROTOCOL}//${window.location.host}/ws`;
 
 const DashboardPage = ({ token, API, setPage }) => {
   const [bookings, setBookings] = useState([]);

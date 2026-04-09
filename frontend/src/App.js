@@ -13,7 +13,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ProviderDashboard from "./pages/ProviderDashboard";
 import InfoPage from "./pages/InfoPage";
 
-const API = "http://127.0.0.1:8000";
+const API = window.location.hostname === "localhost" ? "http://127.0.0.1:8000" : "";
 
 export default function App() {
   const [loadingScreen, setLoadingScreen] = useState(true);

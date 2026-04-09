@@ -91,7 +91,7 @@ def verify_token(authorization: str = Header(None)):
 
 # ─── HEALTH CHECK ───────────────────────────────────────
 
-@app.get("/")
+@app.get("/health")
 def health_check():
     return {"status": "Fixio API is running!"}
 

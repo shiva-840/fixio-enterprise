@@ -1,49 +1,51 @@
-from sentence_transformers import SentenceTransformer, util
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 from ai.services import services
 
-# Load model once
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# 1. Initialize Vectorizer
+vectorizer = TfidfVectorizer(stop_words='english')
 
-# Prepare service texts
+# 2. Extract texts to represent each service
+# Each list item corresponds to services[i]
 service_texts = [
-    s["name"] + " " + " ".join(s["keywords"])
+    f"{s['name']} " + " ".join(s['keywords']) 
     for s in services
 ]
 
-service_embeddings = model.encode(service_texts, convert_to_tensor=True)
-
+# 3. Fit vectorizer on known services
+service_tfidf = vectorizer.fit_transform(service_texts)
 
 def classify_problem(problem):
-    query_embedding = model.encode(problem, convert_to_tensor=True)
-
-    similarities = util.cos_sim(query_embedding, service_embeddings)[0]
-
+    # Transform the user's string
+    query_tfidf = vectorizer.transform([problem])
+    
+    # Calculate cosine similarity with all services
+    similarities = cosine_similarity(query_tfidf, service_tfidf)[0]
+    
     results = []
-
-    # 🔥 collect all scores
+    
+    # 4. Collect scores
     for i, score in enumerate(similarities):
-        score_val = score.item()
-
-        if score_val > 0.25:  # relaxed threshold
+        score_val = float(score)
+        if score_val > 0.05:  # TF-IDF matches can have low overlap but still be super relevant
             results.append({
                 "name": services[i]["name"],
                 "score": round(score_val, 2),
                 "price": services[i].get("price", "300 - 1000")
             })
-
+            
     # sort by score
     results = sorted(results, key=lambda x: x["score"], reverse=True)
-
-    # 🔥 fallback if nothing matched
+    
+    # fallback
     if not results:
         return [{
             "name": "General Service",
             "score": 0.3,
             "price": "300 - 1000"
         }]
-
+        
     return results
-
 
 def estimate_price(service):
     price_map = {
@@ -59,7 +61,7 @@ def estimate_price(service):
         "Massage": "800 - 2500",
         "Home Security": "2000 - 10000",
         "Glass & Aluminium": "1000 - 5000",
-        "Appliance Repair": "300 - 1000",   # 🔥 ADD THIS
+        "Appliance Repair": "300 - 1000",
         "General Service": "300 - 1000"
     }
 
